@@ -1,13 +1,19 @@
 import React from "react";
 
-const PostCard = ({ props: post }) => {
+const contents = [
+  { title: "Learning React", excerpt: "Learning with react" },
+  { title: "Learning Web Development", excerpt: "Learning with web-dev" },
+];
+
+const PostCard = () => {
   return (
     <div className="text-white text-3xl">
-      <div className="text-white">
-        {post.title}
-        {post.excerpt}
-      </div>
-      ;
+      {contents.map((content) => (
+        <div key={content.title}>
+          <h2>{content.title}</h2>
+          <p>{content.excerpt}</p>
+        </div>
+      ))}
     </div>
   );
 };
