@@ -1,6 +1,8 @@
-import { gql, request } from "graphql-request";
+import { GraphQLClient, request } from "graphql-request";
 
-const graphqlAPI = process.env.NEXT_PUBLIC_HYGRAPH_ENDPOINT;
+const url = `${process.env.NEXT_PUBLIC_HYGRAPH_ENDPOINT}`;
+
+const graphConnect = new GraphQLClient(url);
 
 export const getPosts = async () => {
   const query = gql`
@@ -33,7 +35,7 @@ export const getPosts = async () => {
     }
   `;
 
-  const result = request(graphqlAPI, query);
+  const { postsConnection } = await request(graphqlAPI, query);
 
-  return result.postsConnection.edge;
+  return postsConnection.edges;
 };
