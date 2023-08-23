@@ -1,4 +1,8 @@
+// this file is to check the postCard is corect or not
+
 import React from "react";
+
+import moment from "moment";
 
 const temp = ({ post }) => {
   return (
@@ -15,7 +19,7 @@ const temp = ({ post }) => {
         <Link href={`/post/${post.slug}`}>{post.title}</Link>
       </h1>
       <div className="block lg:flex text-center items-center justify-center mb-8 w-full">
-        <div className="flex items-center justify-center mb-4 lg:mb-0 w-full lg:w-auto mr-8 items-center">
+        <div className="flex items-center justify-center mb-4 lg:mb-0 w-full lg:w-auto mr-8 ">
           <Image
             unoptimized
             loader={grpahCMSImageLoader}
