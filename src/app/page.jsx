@@ -15,7 +15,7 @@ export default function Home() {
   const getPostsHere = async () => {
     const result = await getPosts();
     const posts = await result.postsConnection.edges;
-    console.log(posts);
+    // console.log(posts); Console Logging to check the result
     setAllPost(posts);
   };
   return (
