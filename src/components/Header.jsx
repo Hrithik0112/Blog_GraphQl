@@ -1,21 +1,16 @@
-// import React, { useState, useEffect } from "react";
-import React from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
-// import { getCategories } from "../services";
-
-const categories = [
-  { name: "React", slug: "react" },
-  { name: "Web Development", slug: "web-dev" },
-];
+import { getCategories } from "@/services";
 
 const Header = () => {
-  //   const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState([]);
 
-  //   useEffect(() => {
-  //     getCategories().then((newCategories) => {
-  //       setCategories(newCategories);
-  //     });
-  //   }, []);
+  useEffect(() => {
+    getCategories().then((newCategories) => {
+      setCategories(newCategories);
+    });
+  }, []);
 
   return (
     <div className="container mx-auto px-10 mb-8">

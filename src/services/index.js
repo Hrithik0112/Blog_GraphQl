@@ -87,3 +87,21 @@ export const getSimilarPosts = async (categories, slug) => {
 
   return result.posts;
 };
+
+export const getCategories = async () => {
+  const query = gql`
+    query GetGategories {
+      categories {
+        name
+        slug
+      }
+    }
+  `;
+
+  const result = await request(
+    "https://api-ap-south-1.hygraph.com/v2/cllkt1m1g08r101t6cdnd7w69/master",
+    query
+  );
+
+  return result.categories;
+};
