@@ -1,8 +1,4 @@
-import { GraphQLClient, request } from "graphql-request";
-
-const url = `${process.env.NEXT_PUBLIC_HYGRAPH_ENDPOINT}`;
-
-const graphConnect = new GraphQLClient(url);
+import { gql, request } from "graphql-request";
 
 export const getPosts = async () => {
   const query = gql`
@@ -35,7 +31,10 @@ export const getPosts = async () => {
     }
   `;
 
-  const { postsConnection } = await request(graphqlAPI, query);
+  const result = await request(
+    "https://api-ap-south-1.hygraph.com/v2/cllkt1m1g08r101t6cdnd7w69/master",
+    query
+  );
 
-  return postsConnection.edges;
+  return result;
 };
