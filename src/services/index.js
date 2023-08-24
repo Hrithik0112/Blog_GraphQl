@@ -38,3 +38,52 @@ export const getPosts = async () => {
 
   return result;
 };
+
+export const getRecentPosts = async () => {
+  const query = gql`
+    query GetPostDetails() {
+      posts(
+        orderBy: createdAt_ASC
+        last: 3
+      ) {
+        title
+        featuredImage {
+          url
+        }
+        createdAt
+        slug
+      }
+    }
+  `;
+  const result = await request(
+    "https://api-ap-south-1.hygraph.com/v2/cllkt1m1g08r101t6cdnd7w69/master",
+    query
+  );
+
+  return result.posts;
+};
+
+export const getSimilarPosts = async (categories, slug) => {
+  const query = gql`
+    query GetPostDetails($slug: String!, $categories: [String!]) {
+      posts(
+        where: { slug_not: $slug, AND: { categories_some: { slug_in: $categories } } }
+        last: 3
+      ) {
+        title
+        featuredImage {
+          url
+        }
+        createdAt
+        slug
+      }
+    }
+  `;
+  const result = await request(
+    "https://api-ap-south-1.hygraph.com/v2/cllkt1m1g08r101t6cdnd7w69/master",
+    query,
+    { slug, categories }
+  );
+
+  return result.posts;
+};
