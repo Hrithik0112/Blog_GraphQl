@@ -1,5 +1,4 @@
 "use client";
-"use client";
 
 import AdjacentPosts from "@/components/AdjacentPosts";
 import Author from "@/components/Author";
@@ -11,7 +10,7 @@ import { getPostDetails } from "@/services";
 import { useParams } from "next/navigation";
 
 import React from "react";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 const PostDetails = () => {
   // const [postContent, setPostContent] = useState("");
@@ -19,14 +18,12 @@ const PostDetails = () => {
   const { slug } = useParams();
   console.log(slug);
 
-  // useEffect(() => {
-  //   getPostContent();
-  // }, []);
-  // const getPostContent = async ({ params }) => {
-  //   const result = await getPostDetails(params);
-  //   const content = await result;
-  //   console.log(content);
-  // };
+  useEffect(() => {
+    getPostDetails(slug).then((result) => {
+      console.log(result);
+      // setPostContent(result)
+    });
+  }, [slug]);
 
   return (
     <>
@@ -49,23 +46,3 @@ const PostDetails = () => {
   );
 };
 export default PostDetails;
-
-// Fetch data at build time
-// export async function getStaticProps({ params }) {
-//   const data = await getPostDetails(params.slug);
-//   return {
-//     props: {
-//       post: data,
-//     },
-//   };
-// }
-
-// Specify dynamic routes to pre-render pages based on data.
-// The HTML is generated at build time and will be reused on each request.
-// export async function getStaticPaths() {
-//   const posts = await getPosts();
-//   return {
-//     paths: posts.map(({ node: { slug } }) => ({ params: { slug } })),
-//     fallback: true,
-//   };
-// }
