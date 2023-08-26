@@ -1,4 +1,6 @@
 "use client";
+"use client";
+
 import AdjacentPosts from "@/components/AdjacentPosts";
 import Author from "@/components/Author";
 import Categories from "@/components/Categories";
@@ -6,22 +8,25 @@ import Loader from "@/components/Loader";
 import PostDetail from "@/components/PostDetail";
 import PostWidget from "@/components/PostWidget";
 import { getPostDetails } from "@/services";
+import { useParams } from "next/navigation";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { useEffect, useState } from "react";
 
 const PostDetails = () => {
-  const [postContent, setPostContent] = useState("");
+  // const [postContent, setPostContent] = useState("");
 
-  useEffect(() => {
-    getPostContent();
-  }, []);
-  const getPostContent = async (params) => {
-    const result = await getPostDetails(params);
-    const content = await result;
-    // console.log(posts); Console Logging to check the result
-    console.log(content);
-    //  setPostContent(content);
-  };
+  const { slug } = useParams();
+  console.log(slug);
+
+  // useEffect(() => {
+  //   getPostContent();
+  // }, []);
+  // const getPostContent = async ({ params }) => {
+  //   const result = await getPostDetails(params);
+  //   const content = await result;
+  //   console.log(content);
+  // };
 
   return (
     <>

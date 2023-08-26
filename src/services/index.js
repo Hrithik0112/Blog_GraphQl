@@ -106,9 +106,9 @@ export const getCategories = async () => {
   return result.categories;
 };
 
-export const getPostDetails = async (slug) => {
+export const getPostDetails = async () => {
   const query = gql`
-    query GetPostDetails($slug: String!) {
+    query GetPostDetails{$slug : String!} {
       post(where: { slug: $slug }) {
         title
         excerpt
