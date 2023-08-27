@@ -20,7 +20,7 @@ const PostDetails = () => {
 
   useEffect(() => {
     getPostDetails(slug).then((result) => {
-      console.log(result);
+      // console.log(result);
       setPostContent(result);
     });
   }, [slug]);

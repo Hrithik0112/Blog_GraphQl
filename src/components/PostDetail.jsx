@@ -22,7 +22,7 @@ const PostDetail = ({ post }) => {
     switch (type) {
       case "heading-three":
         return (
-          <h3 key={index} className="text-xl font-semibold mb-4">
+          <h3 key={index} className="text-xl font-semibold mb-4 text-white">
             {modifiedText.map((item, i) => (
               <React.Fragment key={i}>{item}</React.Fragment>
             ))}
@@ -30,7 +30,7 @@ const PostDetail = ({ post }) => {
         );
       case "paragraph":
         return (
-          <p key={index} className="mb-8">
+          <p key={index} className="mb-8 text-white">
             {modifiedText.map((item, i) => (
               <React.Fragment key={i}>{item}</React.Fragment>
             ))}
@@ -38,7 +38,7 @@ const PostDetail = ({ post }) => {
         );
       case "heading-four":
         return (
-          <h4 key={index} className="text-md font-semibold mb-4">
+          <h4 key={index} className="text-md font-semibold mb-4 text-white">
             {modifiedText.map((item, i) => (
               <React.Fragment key={i}>{item}</React.Fragment>
             ))}
@@ -54,7 +54,7 @@ const PostDetail = ({ post }) => {
   };
   return (
     <>
-      <div className="bg-white shadow-lg rounded-lg lg:p-8 pb-12 mb-8">
+      <div className="bg-white bg-opacity-30 shadow-lg rounded-lg lg:p-8 pb-12 mb-8">
         <div className="relative overflow-hidden shadow-md mb-6">
           <img
             src={post.featuredImage?.url}
@@ -72,7 +72,7 @@ const PostDetail = ({ post }) => {
                 className="align-middle rounded-full"
                 src={post.author?.avatar.url}
               />
-              <p className="inline align-middle text-gray-700 ml-2 font-medium text-lg">
+              <p className="inline align-middle text-gray-700 ml-2 font-medium text-lg bg-white p-1 rounded-md">
                 {post.author?.name}
               </p>
             </div>
@@ -91,10 +91,12 @@ const PostDetail = ({ post }) => {
                   d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                 />
               </svg>
-              <span className="align-middle">{moment(post.createdAt).format("MMM DD, YYYY")}</span>
+              <span className="align-middle text-white">
+                {moment(post.createdAt).format("MMM DD, YYYY")}
+              </span>
             </div>
           </div>
-          <h1 className="mb-8 text-3xl font-semibold">{post.title}</h1>
+          <h1 className="mb-8 text-3xl font-semibold text-white">{post.title}</h1>
           {post.content?.raw.children.map((typeObj, index) => {
             const children = typeObj.children.map((item, itemindex) =>
               getContentFragment(itemindex, item.text, item)
